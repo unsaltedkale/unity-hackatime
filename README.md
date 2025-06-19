@@ -2,7 +2,7 @@
 
 A [HackaTime](https://hackatime.hackclub.com/) plugin for [Unity](https://unity.com).
 
-![Screenshot](https://user-images.githubusercontent.com/7955682/38732057-79cf45b4-3f25-11e8-958f-07ba5290caba.PNG)
+![Screenshot](https://github.com/user-attachments/assets/421a59c9-8375-4ffa-96ef-270ef149b4ae)
 
 ## About
 
@@ -31,11 +31,11 @@ The [Unity Package Manager](https://docs.unity3d.com/Packages/com.unity.package-
 
 ## Installation (all other Unity versions)
 
-If you don't use the Unity Package Manager, you may copy the `Editor` folder from inside `Assets/com.vladfaust.unitywakatime` into your project's `Assets` folder.
+If you don't use the Unity Package Manager, you may copy the `Editor` folder from inside `Assets/com.daniel-geo.unityhackatime` into your project's `Assets` folder.
 
 ## Setup
 
-1. Run the Unity editor, go to `Window/WakaTime`, and insert your API key (grab one from https://hackatime.hackclub.com/my/wakatime_setup)
+1. Run the Unity editor, go to `Window/HackaTime`, and insert your API key (grab one from https://hackatime.hackclub.com/my/wakatime_setup)
 2. Press `Save Preferences`
 3. Enjoy!
 
