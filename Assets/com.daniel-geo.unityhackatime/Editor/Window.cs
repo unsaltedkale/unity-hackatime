@@ -23,23 +23,7 @@ namespace WakaTime
     private const string URL_PREFIX = "https://hackatime.hackclub.com/api/hackatime/v1/";
 
     public string textToDisplay;
-
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    public class Data
-    {
-      public GrandTotal grand_total { get; set; }
-    }
-
-    public class GrandTotal
-    {
-      public string text { get; set; }
-      public int total_seconds { get; set; }
-    }
-
-    public class Root
-    {
-      public Data data { get; set; }
-    }
+    
 
     [MenuItem("Window/HackaTime")]
     static void Init()
@@ -50,9 +34,49 @@ namespace WakaTime
 
     void OnGUI()
     {
-      Debug.Log("hello!!");
+      var request = UnityWebRequest.Get(URL_PREFIX + "users/current/statusbar/today?api_key=" + _apiKey);
+      request.downloadHandler = new DownloadHandlerBuffer();
+
+      request.SendWebRequest().completed +=
+        operation =>
+        {
+          if (request.downloadHandler.text == string.Empty)
+          {
+            Debug.LogWarning(
+              "<Hestia> offline");
+            return;
+          }
+
+          if (_debug)
+            Debug.Log("<Hestia> Got response from (" + request.uri + ") \n" + request.downloadHandler.text);
+
+
+      
+      var json = request.downloadHandler.text;
+
+          string jsonString = json.ToString();
+          int found = jsonString.IndexOf("m");
+          textToDisplay = (jsonString.Substring(32, found +1 -32));
+          
+          if (_debug)
+          Debug.Log("textToDisplay: " + textToDisplay);
+
+        };
+
+
+      EditorGUILayout.Space();
+      EditorGUILayout.LabelField("⏱ Total Time", textToDisplay);
+      EditorGUILayout.Space();
+
+      GUIContent content = new GUIContent();
+      content.text = "Your [Total Time] is your time spent coding across all IDE's and projects today.";
+      EditorGUILayout.HelpBox(content.text, MessageType.Info);
+
       _enabled = EditorGUILayout.Toggle("Enable HackaTime", _enabled);
       _apiKey = EditorGUILayout.TextField("API key", _apiKey);
+
+      
+
       EditorGUILayout.LabelField("Project name", _projectName);
 
       if (GUILayout.Button("Change project name"))
@@ -77,52 +101,6 @@ namespace WakaTime
         Application.OpenURL(DASHBOARD_URL);
 
       EditorGUILayout.EndHorizontal();
-
-      var request = UnityWebRequest.Get(URL_PREFIX + "users/current/statusbar/today?api_key=" + _apiKey);
-      request.downloadHandler = new DownloadHandlerBuffer();
-
-      request.SendWebRequest().completed +=
-        operation =>
-        {
-          if (request.downloadHandler.text == string.Empty)
-          {
-            Debug.LogWarning(
-              "<Hestia> offline");
-            return;
-          }
-
-          if (_debug)
-            Debug.Log("<Hestia> Got response from (" + request.uri + ") \n" + request.downloadHandler.text);
-
-          if (1 == 2)
-          {
-            Debug.LogWarning("<Hestia> what the hell");
-          }
-          else
-          {
-            if (_debug) Debug.Log("<Hestia> Sent heartbeat!");
-          }
-
-
-      if (request == null)
-      {
-        Debug.Log("Yell");
-      }
-      var json = request.downloadHandler.text;
-
-      Debug.Log(json.ToString());
-
-      Root myDeserializedClass = JsonUtility.FromJson<Root>(json);
-
-      Debug.Log(myDeserializedClass.data.grand_total.text);
-
-      Debug.Log("textToDisplay: " + textToDisplay);
-
-      //Debug.Log(response);
-        };
-
-
-      EditorGUILayout.LabelField("⏱ Total Time", "ugh");
     }
 
 
