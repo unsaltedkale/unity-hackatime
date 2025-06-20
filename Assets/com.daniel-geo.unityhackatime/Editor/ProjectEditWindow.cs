@@ -20,10 +20,12 @@ namespace WakaTime {
     private static bool _isProjectFileMissed;
 
     public static void Display() {
-      if (_window) {
+      if (_window)
+      {
         FocusWindowIfItsOpen<ProjectEditWindow>();
       }
-      else {
+      else
+      {
         _window = CreateInstance<ProjectEditWindow>();
         _window.ShowPopup();
       }
