@@ -26,7 +26,7 @@ namespace WakaTime {
     private static bool _debug = true;
 
     private const string URL_PREFIX = "https://hackatime.hackclub.com/api/hackatime/v1/";
-    private const int HEARTBEAT_COOLDOWN = 120;
+    private const int HEARTBEAT_COOLDOWN = 30;
 
     private static HeartbeatResponse _lastHeartbeat;
 
