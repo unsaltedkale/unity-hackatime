@@ -69,5 +69,7 @@ The plugin will automatically send heartbeats to HackaTime after the following e
 * EditorSceneManager.newSceneCreated
 
 ## Credits
+
+__[@unsaltedkale](https://github.com/unsaltedkale) for her valuable help in testing the project and creating the live hackatime clock__  
 __This plugin wouldn’t exist without [@taciturnaxolotl](https://github.com/taciturnaxolotl)__  
-__A huge thanks to [@unsaltedkale](https://github.com/unsaltedkale) for her valuable help in testing the project__
+__A huge thanks to [@ImShyMike](https://github.com/ImShyMike) for helping with Hackatime API fetching__
