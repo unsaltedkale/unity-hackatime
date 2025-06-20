@@ -1,12 +1,21 @@
+> [!IMPORTANT]
+> This plugin (& README) is not complete yet.
+
 # unity-hackatime
 
-A [Hackatime](https://hackatime.hackclub.com/) plugin for [Unity](https://unity.com).
+A [Hackatime](https://hackatime.hackclub.com/) plugin for [Unity](https://unity.com). (Forked from [@Daniel-Geo](https://github.com/Daniel-Geo/unity-hackatime))
 
 ![Screenshot](https://github.com/user-attachments/assets/421a59c9-8375-4ffa-96ef-270ef149b4ae)
 
 ## About
 
+This is a fork of [@Daniel-Geo's Hackatime Unity Plugin](https://github.com/Daniel-Geo/unity-hackatime) because I was inspired to add some extra features! 
+
 Existing solutions didn't work for me (https://github.com/vladfaust/unity-wakatime, and other solutions lack an option for sending heartbeats to different URLs, such as to Hackatime), so I decided to fork vladfaust's solution to support Hackatime, Wakatime and others using the API URL.
+
+Bonus features are:
+- Live clock showing how much you have coded that day.
+- *(Others (maybe) to come soon)*
 
 ## Installation using the Unity Package Manager (Unity 2018.1+)
 
