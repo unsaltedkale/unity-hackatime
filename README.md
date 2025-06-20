@@ -1,16 +1,32 @@
 # unity-hackatime
 
-A [HackaTime](https://hackatime.hackclub.com/) plugin for [Unity](https://unity.com).
+A [Hackatime](https://hackatime.hackclub.com/) plugin for [Unity](https://unity.com).
 
 ![Screenshot](https://github.com/user-attachments/assets/421a59c9-8375-4ffa-96ef-270ef149b4ae)
 
 ## About
 
-Existing solutions didn't work for me (https://github.com/vladfaust/unity-wakatime, and other solutions lack an option for sending heartbeats to different URLs, such as to Hackatime), so I decided to fork vladfaust's solution to support Hackatime instead of Wakatime.
+Existing solutions didn't work for me (https://github.com/vladfaust/unity-wakatime, and other solutions lack an option for sending heartbeats to different URLs, such as to Hackatime), so I decided to fork vladfaust's solution to support Hackatime, Wakatime and others using the API URL.
 
 ## Installation using the Unity Package Manager (Unity 2018.1+)
 
 The [Unity Package Manager](https://docs.unity3d.com/Packages/com.unity.package-manager-ui@1.8/manual/index.html) (UPM) keeps package contents separate from your main project files.
+
+1. In the Unity Package Manager, click on the plus sign in the top left corner
+2. Select "Install package from git URL..."
+3. Enter the following line:
+   ```
+    https://github.com/daniel-geo/unity-hackatime.git#package
+    ```
+4. Click on the install button
+
+![image](https://github.com/user-attachments/assets/73ef6434-1164-40fe-8c33-c8365f426382)
+
+
+
+
+
+## Installation using the Unity Package Manager manifest.json (Unity 2018.1+)
 
 1. Modify your project's `Packages/manifest.json` file by adding this line:
 
@@ -51,3 +67,7 @@ The plugin will automatically send heartbeats to HackaTime after the following e
 * EditorSceneManager.sceneOpened
 * EditorSceneManager.sceneClosing
 * EditorSceneManager.newSceneCreated
+
+## Credits
+__This plugin wouldn’t exist without [@taciturnaxolotl](https://github.com/taciturnaxolotl)__  
+__A huge thanks to [@unsaltedkale](https://github.com/unsaltedkale) for her valuable help in testing the project__
