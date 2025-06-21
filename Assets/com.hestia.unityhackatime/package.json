@@ -1,0 +1,16 @@
+{
+  "author": "Hestia",
+  "name": "com.hestia.unityhackatime",
+  "displayName": "Unity HackaTime",
+  "version": "1.0.0",
+  "unity": "2020.1",
+  "description": "HackaTime plugin for Unity \nMade with ❤️ by @Daniel-Geo and @unsaltedkale with help from @taciturnaxolotl and @ImShyMike",
+  "keywords": [
+    "unity",
+    "wakatime",
+    "stats",
+    "tracker",
+    "programming"
+  ],
+  "category": "Productivity"
+}
