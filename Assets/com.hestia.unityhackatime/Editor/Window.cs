@@ -22,7 +22,9 @@ namespace WakaTime
 
     private const string URL_PREFIX = "https://hackatime.hackclub.com/api/hackatime/v1/";
 
-    public string textToDisplay;
+    public string textToDisplayForTotal;
+    public string textToDisplayForProjectTotal;
+    public string _projectDisplayName;
     
 
     [MenuItem("Window/HackaTime")]
@@ -43,12 +45,12 @@ namespace WakaTime
           if (request.downloadHandler.text == string.Empty)
           {
             Debug.LogWarning(
-              "<Hestia> offline");
+              "<Hackatime Clock> offline");
             return;
           }
 
           if (_debug)
-            Debug.Log("<Hestia> Got response from (" + request.uri + ") \n" + request.downloadHandler.text);
+            Debug.Log("<Hackatime Clock> Got response from (" + request.uri + ") \n" + request.downloadHandler.text);
 
 
       
@@ -56,16 +58,45 @@ namespace WakaTime
 
           string jsonString = json.ToString();
           int found = jsonString.IndexOf("m");
-          textToDisplay = (jsonString.Substring(32, found +1 -32));
+          textToDisplayForTotal = (jsonString.Substring(32, found +1 -32));
           
           if (_debug)
-          Debug.Log("textToDisplay: " + textToDisplay);
+          Debug.Log("textToDisplayForTotal: " + textToDisplayForTotal);
 
         };
 
+      var request2 = UnityWebRequest.Get(URL_PREFIX + "users/stats?api_key=" + _apiKey);
+      request2.downloadHandler = new DownloadHandlerBuffer();
+
+      request2.SendWebRequest().completed +=
+        operation =>
+        {
+          if (request2.downloadHandler.text == string.Empty)
+          {
+            Debug.LogWarning(
+              "<Hackatime Clock> offline");
+            return;
+          }
+
+          if (_debug)
+            Debug.Log("HERE <Hackatime Clock> Got response from (" + request2.uri + ") \n" + request.downloadHandler.text);
+        };
+
+      if (_projectName.Length > 20)
+      {
+        _projectDisplayName = _projectName.Substring(0, 20);
+        _projectDisplayName += "...";
+      }
+
+      else
+        _projectDisplayName = _projectName;
+
+      //textToDisplayForProjectTotal = ?
 
       EditorGUILayout.Space();
-      EditorGUILayout.LabelField("⏱ Total Time", textToDisplay);
+      EditorGUILayout.LabelField("⏱ " + _projectDisplayName, "textToDisplayForProjectTotal");
+    
+      EditorGUILayout.LabelField("⏱ Total Time Today", textToDisplayForTotal);
       EditorGUILayout.Space();
 
       GUIContent content = new GUIContent();
