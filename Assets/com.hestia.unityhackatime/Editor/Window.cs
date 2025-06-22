@@ -29,7 +29,10 @@ namespace WakaTime
     public string textToDisplayForTotal;
     public string _projectDisplayName;
     public string todaysDateyyyyMd;
-    public bool projectTimeTodayAtTop; 
+    public bool projectTimeTodayAtTop;
+    public bool codingTimeTodayAtTop;
+    public bool projectTimeTotalAtTop;
+    public bool codingTimeTotalAtTop;
     
 
     [MenuItem("Window/HackaTime")]
@@ -43,6 +46,29 @@ namespace WakaTime
     {
       if (projectTimeTodayAtTop)
         EditorGUILayout.LabelField("⏱ Project Time Today", textToDisplayForProjectToday);
+
+      if (codingTimeTodayAtTop)
+        EditorGUILayout.LabelField("⏱ Coding Time Today", textToDisplayForToday);
+
+      if (projectTimeTotalAtTop)
+        EditorGUILayout.LabelField("⏱ Project Time Total", textToDisplayForProjectTotal);
+
+      if (codingTimeTotalAtTop)
+        EditorGUILayout.LabelField("⏱ Coding Time Total", textToDisplayForTotal);
+
+      if (!projectTimeTodayAtTop && !codingTimeTodayAtTop && !projectTimeTotalAtTop && !codingTimeTotalAtTop)
+        EditorGUILayout.LabelField("", "Click the [Add to Top] toggles to add your prefered clocks here!");
+      else if (!projectTimeTodayAtTop)
+        EditorGUILayout.LabelField("", "");
+
+      if (!codingTimeTodayAtTop)
+          EditorGUILayout.LabelField("", "");
+      
+      if (!projectTimeTotalAtTop)
+        EditorGUILayout.LabelField("", "");
+      
+      if (!codingTimeTotalAtTop)
+        EditorGUILayout.LabelField("", "");
 
       _enabled = EditorGUILayout.Toggle("Enable HackaTime", _enabled);
       _apiKey = EditorGUILayout.TextField("API key", _apiKey);
@@ -88,7 +114,7 @@ namespace WakaTime
           }
 
           if (_debug)
-            Debug.Log("<Hackatime Clock> Got response from (" + request.uri + ") \n" + request.downloadHandler.text);
+            Debug.Log("<Hackatime Clock> Request 1 got response from (" + request.uri + ") \n" + request.downloadHandler.text);
 
 
 
@@ -127,7 +153,7 @@ namespace WakaTime
           }
 
           if (_debug)
-            Debug.Log("HERE <Hackatime Clock> Got response from (" + request2.uri + ") \n" + request2.downloadHandler.text);
+            Debug.Log("<Hackatime Clock> Request 2 got response from (" + request2.uri + ") \n" + request2.downloadHandler.text);
 
           var jsonString2 = request2.downloadHandler.text;
           int found2 = jsonString2.IndexOf(_projectName);
@@ -159,7 +185,7 @@ namespace WakaTime
           }
 
           if (_debug)
-            Debug.Log("HERE <Hackatime Clock> Got response from (" + request3.uri + ") \n" + request3.downloadHandler.text);
+            Debug.Log("<Hackatime Clock> Request 3 got response from (" + request3.uri + ") \n" + request3.downloadHandler.text);
 
           var jsonString3 = request3.downloadHandler.text;
           int found3 = jsonString3.IndexOf(_projectName);
@@ -182,25 +208,55 @@ namespace WakaTime
 
 
         };
-
+      
       EditorGUILayout.Space();
 
-      EditorGUILayout.LabelField("⏱ Project Time Today", textToDisplayForProjectToday);
+      string emptyStar = "☆"; //U+2606
+      string fullStar = "⭐"; //U+2B50
+
+      string starHold = emptyStar;
+
+      if (projectTimeTodayAtTop)
+        starHold = fullStar;
+
+      EditorGUILayout.LabelField(starHold + "⏱ Project Time Today", textToDisplayForProjectToday);
 
       projectTimeTodayAtTop = EditorGUILayout.Toggle("Add to Top", projectTimeTodayAtTop);
 
-      EditorGUILayout.LabelField("⏱ Coding Time Today", textToDisplayForToday);
+      starHold = emptyStar;
 
-      EditorGUILayout.LabelField("⏱ Project Time Total", textToDisplayForProjectTotal);
+      if (codingTimeTodayAtTop)
+        starHold = fullStar;
 
-      EditorGUILayout.LabelField("⏱ Coding Time Total", textToDisplayForTotal);
+      EditorGUILayout.LabelField(starHold + "⏱ Coding Time Today", textToDisplayForToday);
+
+      codingTimeTodayAtTop = EditorGUILayout.Toggle("Add to Top", codingTimeTodayAtTop);
+
       EditorGUILayout.Space();
 
-      GUILayout.ExpandHeight(true);
+      starHold = emptyStar;
+
+      if (projectTimeTotalAtTop)
+        starHold = fullStar;
+
+      EditorGUILayout.LabelField(starHold + "⏱ Project Time Total", textToDisplayForProjectTotal);
+
+      projectTimeTotalAtTop = EditorGUILayout.Toggle("Add to Top", projectTimeTotalAtTop);
+
+      starHold = emptyStar;
+
+      if (codingTimeTotalAtTop)
+        starHold = fullStar;
+
+      EditorGUILayout.LabelField(starHold + "⏱ Coding Time Total", textToDisplayForTotal);
+
+      codingTimeTotalAtTop = EditorGUILayout.Toggle("Add to Top", codingTimeTotalAtTop);
+
+      EditorGUILayout.Space();
+
       GUIContent content = new GUIContent();
       content.text = "[Project Time Today] is the amount of time you spent coding <" + _projectName + "> today.\n[Total Time Today] is your amount of time spent coding across all IDE's and projects today.\n[Project Time Total] is the amount of total amount of time you spent coding <" + _projectName + "> since you started it.\n[Coding Time Total] is your total amount of time spent coding across all IDE's and projects since you began.";
       EditorGUILayout.HelpBox(content.text, MessageType.Info);
-      GUILayout.ExpandHeight(false);
     }
 
 
