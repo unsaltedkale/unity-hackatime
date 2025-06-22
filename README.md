@@ -94,6 +94,6 @@ The plugin will automatically send heartbeats to HackaTime after the following e
 
 ## Credits
 
-__A huge thanks to [@Daniel-Geo](https://github.com/Daniel-Geo) for making the original Hackatime fork and helping me out__
+__A huge thanks to [@Daniel-Geo](https://github.com/Daniel-Geo) for making the original Hackatime fork and helping me out__  
 __This plugin wouldn’t exist without [@taciturnaxolotl](https://github.com/taciturnaxolotl)__  
 __A huge thanks to [@ImShyMike](https://github.com/ImShyMike) for helping with Hackatime API fetching__
