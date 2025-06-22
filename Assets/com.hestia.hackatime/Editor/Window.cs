@@ -33,7 +33,18 @@ namespace WakaTime
     public bool codingTimeTodayAtTop;
     public bool projectTimeTotalAtTop;
     public bool codingTimeTotalAtTop;
-    
+    public struct StringString
+    {
+      public string string1;
+      public string string2;
+
+      public StringString(string String1, string String2)
+      {
+        string1 = String1;
+        string2 = String2;
+      }
+    }
+    public List<StringString> LabelFieldList = new List<StringString>(4);
 
     [MenuItem("Window/HackaTime")]
     static void Init()
@@ -69,6 +80,109 @@ namespace WakaTime
       
       if (!codingTimeTotalAtTop)
         EditorGUILayout.LabelField("", "");
+
+      //not working
+      /*if (projectTimeTodayAtTop)
+      {
+        bool b = false;
+        foreach (StringString s in LabelFieldList)
+        {
+          if (s.string1 == "⏱ Project Time Today")
+          {
+            b = true;
+          }
+        }
+        if (!b)
+        {
+          LabelFieldList.Add(new StringString("⏱ Project Time Today", textToDisplayForProjectToday));
+        }
+      }
+
+      if (!projectTimeTodayAtTop)
+      {
+        int i = 5;
+        foreach (StringString s in LabelFieldList)
+        {
+          if (s.string1 == "⏱ Project Time Today")
+          {
+            i = LabelFieldList.IndexOf(s);
+            LabelFieldList.Remove(s);
+            break;
+          }
+        }
+
+      }
+
+      if (codingTimeTodayAtTop)
+      {
+        bool b = false;
+        int i = 5;
+        foreach (StringString s in LabelFieldList)
+        {
+          if (s.string1 == "⏱ Coding Time Today")
+          {
+            b = true;
+            i = LabelFieldList.IndexOf(s);
+            break;
+          }
+        }
+        if (!b)
+        {
+          LabelFieldList.Add(new StringString("⏱ Coding Time Today", textToDisplayForToday));
+        }
+
+        if (b)
+        {
+            LabelFieldList[i].string2 = textToDisplayForToday;
+        }
+      }
+
+      if (!codingTimeTodayAtTop)
+      {
+        i = 5;
+        foreach (StringString s in LabelFieldList)
+        {
+          if (s.string1 == "⏱ Coding Time Today")
+          {
+            i = LabelFieldList.IndexOf(s);
+            LabelFieldList.Remove(s);
+            break;
+          }
+        }
+
+      }
+
+      if (LabelFieldList.Count > 0)
+      {
+        if (LabelFieldList[0].string1 != "")
+          EditorGUILayout.LabelField(LabelFieldList[0].string1, LabelFieldList[0].string2);
+      }
+      else
+        EditorGUILayout.LabelField("LABELFIELD0", "LABELFIELD0");
+
+      if (LabelFieldList.Count > 1)
+      {
+        if (LabelFieldList[1].string1 != "")
+          EditorGUILayout.LabelField(LabelFieldList[1].string1, LabelFieldList[1].string2);
+      }
+      else
+        EditorGUILayout.LabelField("LABELFIELD1", "LABELFIELD1");
+
+      if (LabelFieldList.Count > 2)
+      {
+        if (LabelFieldList[2].string1 != "")
+          EditorGUILayout.LabelField(LabelFieldList[2].string1, LabelFieldList[2].string2);
+      }
+      else
+        EditorGUILayout.LabelField("LABELFIELD2", "LABELFIELD2");
+
+      if (LabelFieldList.Count > 3)
+      {
+        if (LabelFieldList[3].string1 != "")
+          EditorGUILayout.LabelField(LabelFieldList[3].string1, LabelFieldList[3].string2);
+      }
+      else
+        EditorGUILayout.LabelField("LABELFIELD3", "LABELFIELD3");*/
 
       _enabled = EditorGUILayout.Toggle("Enable HackaTime", _enabled);
       _apiKey = EditorGUILayout.TextField("API key", _apiKey);
@@ -220,7 +334,9 @@ namespace WakaTime
       string starHold = emptyStar;
 
       if (projectTimeTodayAtTop)
+      {
         starHold = fullStar;
+      }
 
       EditorGUILayout.LabelField(starHold + "⏱ Project Time Today", textToDisplayForProjectToday);
 
