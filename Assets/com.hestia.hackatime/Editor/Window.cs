@@ -134,6 +134,7 @@ namespace WakaTime
 
       todaysDateyyyyMd = DateTime.Now.ToString("yyyy-M-d");
 
+      if (_debug)
       Debug.Log(todaysDateyyyyMd);
 
       //https://hackatime.hackclub.com/api/v1/users/my/stats?start_date=2025-6-21&features=projects&limit=100
@@ -164,6 +165,7 @@ namespace WakaTime
           jsonString2 = jsonString2.Substring(0, found2 - 3);
 
           textToDisplayForProjectToday = jsonString2;
+          if (_debug)
           Debug.Log("textToDisplayForProjectToday: " + textToDisplayForProjectToday);
 
         };
@@ -196,6 +198,7 @@ namespace WakaTime
           jsonString3 = jsonString3.Substring(0, found3 - 3);
 
           textToDisplayForProjectTotal = jsonString3;
+          if (_debug)
           Debug.Log("textToDisplayForProjectTotal: " + textToDisplayForProjectTotal);
 
           var jsonString4 = request3.downloadHandler.text;
