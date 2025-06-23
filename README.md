@@ -1,5 +1,3 @@
-> [!IMPORTANT]
-> This plugin (& README) is _should_ be in a state where you can install it. I intend to add a little more before it's completely done.
 
 # Unity Hackatime
 
