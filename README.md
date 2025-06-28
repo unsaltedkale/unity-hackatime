@@ -1,4 +1,5 @@
-
+>[!CAUTION]
+>PSA: THIS IS BROKEN AND WILL BE HOTFIXED SOON. Hackatime added rate limits, and I need to rate limit the plugin so I don't hit that and break the plugin. Hotfix will be out by Friday, July 4th, 2025 at the LATEST. Until then, use [@Daniel-Geo's Plugin](https://github.com/Daniel-Geo/unity-hackatime))
 # Unity Hackatime
 
 A [Hackatime](https://hackatime.hackclub.com/) plugin for [Unity](https://unity.com). (Forked from [@Daniel-Geo](https://github.com/Daniel-Geo/unity-hackatime))
