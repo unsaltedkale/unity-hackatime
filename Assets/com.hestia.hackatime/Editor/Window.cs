@@ -220,6 +220,7 @@ namespace WakaTime
       {
         if (timeUntilLoopIsDone == 120)
         {
+          if(_debug)
           Debug.Log("timer started");
         }
 
@@ -228,6 +229,7 @@ namespace WakaTime
         {
           timeUntilLoopIsDone = 120;
           isTimerLoopRunning = false;
+          if(_debug)
           Debug.Log("timer done");
         }
       }
